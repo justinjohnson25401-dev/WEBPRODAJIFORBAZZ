@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 Message Constructor Pro</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Фоновая анимация -->
+    <div class="background-gradient"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Хедер -->
+        <header class="header fade-in">
+            <div class="logo">
+                <span class="logo-icon">💌</span>
+                <h1 class="logo-text">Message Constructor<span class="pro-badge">PRO</span></h1>
+            </div>
+            <div class="header-right">
+                <div class="limit-badge" id="limit-badge">
+                    <span class="limit-icon">🔥</span>
+                    <span class="limit-text">
+                        <span id="generations-left">50</span> / 50
+                    </span>
+                </div>
+                <button class="help-btn" id="help-btn" title="Помощь">
+                    <span>❓</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Прогресс-бар -->
+        <div class="progress-section fade-in-delay">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+                <div class="progress-glow" id="progress-glow"></div>
+            </div>
+            <div class="progress-info">
+                <span class="progress-text" id="progress-text">Шаг 1 из 15</span>
+                <span class="progress-percent" id="progress-percent">7%</span>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="main-layout">
+            <!-- Левая панель: форма -->
+            <div class="form-panel glass-card slide-in-left">
+                <div class="form-header">
+                    <h2 class="form-title" id="form-title">🎯 Начнём с салона</h2>
+                    <p class="form-subtitle" id="form-subtitle">Вставьте строку из Excel-таблицы</p>
+                </div>
+
+                <form id="main-form" autocomplete="off">
+                    <div class="questions-container" id="questions-container">
+                        <!-- Вопросы загружаются динамически -->
+                    </div>
+
+                    <div class="navigation">
+                        <button type="button" class="btn btn-secondary" id="prev-btn" disabled>
+                            <span class="btn-icon">←</span>
+                            <span class="btn-text">Назад</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="next-btn">
+                            <span class="btn-text">Далее</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                        <button type="submit" class="btn btn-generate" id="generate-btn" style="display: none;">
+                            <span class="btn-icon">✨</span>
+                            <span class="btn-text">Создать сообщение</span>
+                            <div class="btn-glow"></div>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Советы -->
+                <div class="tips-card" id="tips-card" style="display: none;">
+                    <div class="tip-icon">💡</div>
+                    <div class="tip-content">
+                        <p class="tip-title">Совет:</p>
+                        <p class="tip-text" id="tip-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правая панель: превью -->
+            <div class="preview-panel glass-card slide-in-right">
+                <div class="preview-header">
+                    <h3 class="preview-title">📱 Предпросмотр</h3>
+                    <div class="preview-tabs">
+                        <button class="tab active" data-tab="message">Сообщение</button>
+                        <button class="tab" data-tab="metrics">Метрики</button>
+                    </div>
+                </div>
+
+                <!-- Вкладка: Сообщение -->
+                <div class="tab-content active" id="tab-message">
+                    <div class="phone-mockup">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="message-bubble" id="message-preview">
+                                <div class="placeholder-shimmer">
+                                    <div class="shimmer-line"></div>
+                                    <div class="shimmer-line"></div>
+                                    <div class="shimmer-line short"></div>
+                                </div>
+                                <p class="placeholder-text">Заполните форму, чтобы увидеть превью сообщения...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вкладка: Метрики -->
+                <div class="tab-content" id="tab-metrics" style="display: none;">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">✅</div>
+                            <div class="metric-label">Персонализация</div>
+                            <div class="metric-value" id="metric-personalization">-</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🔢</div>
+                            <div class="metric-label">Конкретные цифры</div>
+                            <div class="metric-value" id="metric-numbers">-</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🛡️</div>
+                            <div class="metric-label">Снятие рисков</div>
+                            <div class="metric-value" id="metric-risks">-</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📏</div>
+                            <div class="metric-label">Длина</div>
+                            <div class="metric-value" id="metric-length">-</div>
+                        </div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-label">Прогноз отклика</div>
+                        <div class="score-value" id="score-value">-</div>
+                        <div class="score-bar">
+                            <div class="score-fill" id="score-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Действия после генерации -->
+                <div class="actions-panel" id="actions-panel" style="display: none;">
+                    <button class="action-btn primary" id="copy-btn">
+                        <span class="action-icon">📋</span>
+                        <span class="action-text">Скопировать</span>
+                        <div class="ripple"></div>
+                    </button>
+                    <button class="action-btn secondary" id="variation-btn">
+                        <span class="action-icon">🔄</span>
+                        <span class="action-text">Другой вариант</span>
+                    </button>
+                    <button class="action-btn secondary" id="restart-btn">
+                        <span class="action-icon">🆕</span>
+                        <span class="action-text">Заново</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно с предупреждениями -->
+    <div class="modal" id="warning-modal" style="display: none;">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚠️ Предупреждения</h3>
+                <button class="modal-close" id="modal-close">×</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Предупреждения загружаются динамически -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="modal-ok">Понятно</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Лоадер -->
+    <div class="loader-overlay" id="loader" style="display: none;">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loader-text" id="loader-text">Генерируем сообщение...</p>
+            <div class="loader-stages">
+                <div class="stage active">⚡ Анализируем данные салона</div>
+                <div class="stage">✍️ Подбираем триггеры</div>
+                <div class="stage">🎯 Адаптируем под опыт</div>
+                <div class="stage">✅ Проверяем качество</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Скрипты -->
+    <script src="js/questions-config.js"></script>
+    <script src="js/excel-parser.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
